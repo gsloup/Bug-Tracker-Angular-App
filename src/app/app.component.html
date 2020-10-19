@@ -4,13 +4,6 @@
   <button *ngIf="auth.user | async" (click)="logout()">Logout</button>
 </mat-toolbar>
 
-<h2 *ngIf="auth.user | async"> Welcome Back {{(auth.user | async)?.displayName}}</h2>
-
-<h1>Bug Tracker</h1>
-<ul>
-  <li class="text" *ngFor="let item of items | async">
-    {{item.name}}
-  </li>
-</ul>
+<h2 *ngIf="auth.user | async">Welcome {{(auth.user | async)?.displayName}}</h2>
 
 <router-outlet></router-outlet>
