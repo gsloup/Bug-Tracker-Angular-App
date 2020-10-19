@@ -8,5 +8,5 @@
 <div *ngFor="let project of projects">
     <h3>{{project.title}}</h3>
     <h3>{{project.description}}</h3>
-    <button (click)="deleteProject(project.id)">Delete</button>
+    <button (click)="removeProject(project.id)">Delete</button>
 </div>
