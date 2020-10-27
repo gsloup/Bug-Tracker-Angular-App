@@ -1,4 +1,4 @@
-# BugTrackerAngularApp
+# Bug Tracker App
 
 This project was built in Angular 10.
 
