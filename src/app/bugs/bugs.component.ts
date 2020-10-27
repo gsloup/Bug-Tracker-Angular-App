@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { Bug } from '../interfaces/bug.interface';
 import { ProjectsService } from '../services/projects.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class BugsComponent implements OnInit {
   projId: string;
   
   projectName: string;
+  bugsList: Bug[] = []; // will fill with data retrieved from projectsService
 
   constructor(private projectService: ProjectsService, private actr: ActivatedRoute, private afs: AngularFirestore) { 
     // Grab and attach projID from url endpoint to the local variable
