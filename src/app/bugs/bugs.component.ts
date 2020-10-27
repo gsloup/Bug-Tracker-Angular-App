@@ -49,20 +49,8 @@ export class BugsComponent implements OnInit {
     this.status = '';
   }
 
-  removeBug(){
-    // add code later to send to the back end
+  removeBug(bugId: string){ // STILL NEED TO TEST FUNCTIONALITY
+    this.projectService.removeBug(bugId)
   }
-
-  // Use projectId to get the name of the project so it may be displayed as a header
-  // getProjectName() {
-  //   let projectsDocument = this.afs.doc<project>('projects/' + this.projId);
-  //   let project = projectsDocument.snapshotChanges().pipe(
-  //     map(changes => changes.map(a => {
-  //       const data = a.payload.doc.data() as project;
-  //       const id = a.payload.doc.id;
-  //       return {id, ...data};
-  //     }))
-  //   )
-  // }
 
 }
