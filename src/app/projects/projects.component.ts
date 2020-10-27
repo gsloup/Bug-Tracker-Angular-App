@@ -36,6 +36,8 @@ export class ProjectsComponent implements OnInit {
   addProject(){
     this.projectService.addProject(this.title, this.description);
     console.log('addProject() runs in component');
+    this.title = '';
+    this.description = '';
   }
   removeProject(id){
     this.projectService.removeProject(id);
