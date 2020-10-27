@@ -4,12 +4,12 @@
 <form class="input-form margin-auto mb-25">
     <mat-form-field class="full-width" appearance="fill">
         <mat-label>Project Title</mat-label>
-        <input matInput [(ngModel)]="title">
+        <input matInput [(ngModel)]="title" name='title'>
     </mat-form-field>
     <br>
     <mat-form-field class="full-width" appearance="fill">
         <mat-label>Description</mat-label>
-        <textarea matInput [(ngModel)]="description"></textarea>
+        <textarea matInput [(ngModel)]="description" name="description"></textarea>
     </mat-form-field>
     <br>
     <button mat-raised-button color="primary" (click)="addProject()" class="float-right">Add</button>
