@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectsService } from '../services/projects.service';
 
 @Component({
   selector: 'app-bugs',
@@ -12,17 +13,21 @@ export class BugsComponent implements OnInit {
   description: string;
   status: string;
 
-  constructor() { }
+  constructor(private projectService: ProjectsService) { }
 
   ngOnInit(): void {
   }
 
   addBug() {
     // ADD FUNCTIONALITY TO THE PROJECTS SERVICE TO SEND THIS INFO TO THE DB
+    this.projectService.addBug(this.title, this.description, this.difficulty, this.status);
+
+
     console.log(this.title);
     console.log(this.difficulty);
     console.log(this.description);
     console.log(this.status);
+
     
     // Clear input data after new bug is added
     this.title = '';

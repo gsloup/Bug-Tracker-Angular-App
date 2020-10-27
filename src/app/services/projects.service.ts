@@ -18,6 +18,7 @@ export class ProjectsService {
       this.userId = v ? v.uid : null;
     });
   }
+  // PROJECTS FUNCTIONS
   addProject(title: string, description: string){
     this.afs.collection('projects').add({
       userId: this.userId,
@@ -27,14 +28,18 @@ export class ProjectsService {
     console.log("addProject() runs in service")
   }
   removeProject(projId: string){
-    this.afs.collection('projects').doc(projId).delete(); // UNSURE OF WHETHER THIS FUNCTION WILL WORK
+    this.afs.collection('projects').doc(projId).delete();
   }
-  addBug(title: string, description: string){
+  
+  // BUGS FUNCTIONS
+  addBug(title: string, description: string, difficulty: string, status: string){
     this.afs.collection('bugs').add({
       userId: this.userId, // may not need, if linked via projId
       // projId: this.projId
       title: title,
-      description: description
+      description: description,
+      difficulty: difficulty,
+      status: status
     })
   }
   removeBug(bugId: string){
