@@ -10,7 +10,7 @@ const redirectLoggedInToProjects = () => redirectLoggedInTo(['projects']);
 const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToProjects }},
   {path: 'projects', component: ProjectsComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
-  {path: 'bugs/:project', component: BugsComponent},
+  {path: 'projects/:projId', component: BugsComponent},
   {path: '**', redirectTo:"/projects"}
 ];
 

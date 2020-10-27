@@ -1,4 +1,4 @@
-<a routerLink="/bugs/1234">
+<a style='color:yellow' routerLink="/projects/1234">
     link to bugs component for debugging
   </a>
 
@@ -25,7 +25,7 @@
         <mat-card-title>{{project.title}}</mat-card-title>
         <mat-card-content>{{project.description}}</mat-card-content>
         <!-- will redirect to the bugs page for that project-->
-        <button mat-raised-button color="accent">Bugs</button>
+        <button mat-raised-button color="accent" [routerLink]="'/projects/'+project.id">Bugs</button>
 
         <button mat-icon-button (click)="removeProject(project.id)" style="float: right;">
             <mat-icon (click)="removeProject(project.id)" color="warn">delete</mat-icon>
