@@ -8,17 +8,16 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class ProjectsService {
 
   userId: string = '';
-  projId: string = ''; // will need to grab it from either the store or firestore
-  bugId: string = ''; // see above
-
-  // NEED TO ADD A PROJECT ID FOR THE ADDBUG FEATURE
+  projId: string = ''; 
+  bugId: string = ''; 
 
   constructor(private auth: AngularFireAuth, private afs: AngularFirestore) { 
+    // Attaches Google User to userId var
     this.auth.user.subscribe(v=> {
       this.userId = v ? v.uid : null;
     });
   }
-  // PROJECTS FUNCTIONS
+  // Projects' Functions
   addProject(title: string, description: string){
     this.afs.collection('projects').add({
       userId: this.userId,
@@ -31,10 +30,10 @@ export class ProjectsService {
     this.afs.collection('projects').doc(projId).delete();
   }
   
-  // BUGS FUNCTIONS
+  // Bugs' Functions
   addBug(title: string, description: string, difficulty: string, status: string, projId: string){
     this.afs.collection('bugs').add({
-      // userId: this.userId, // may not need, if linked via projId
+      // userId: this.userId, // may not need since it is linked to projId
       projId: projId,
       title: title,
       description: description,
