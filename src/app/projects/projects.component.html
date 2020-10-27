@@ -1,16 +1,27 @@
-<h1>Projects</h1>
-<!-- CONSIDER ADDING A FORM FIELD HERE FOR BETTER UI/UX -->
-<h2>Project Title</h2>
-<input [(ngModel)]="title" >
-<h2>Description</h2>
-<input [(ngModel)]="description">
-<button (click)="addProject()">Add</button>
+<h1 class="text-center">Projects</h1>
 
+<!-- New Project Form -->
+<form class="input-form margin-auto">
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Project Title</mat-label>
+        <input matInput [(ngModel)]="title">
+    </mat-form-field>
+    <br>
+    <mat-form-field  class="full-width" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="description"></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="addProject()" 
+        class="margin-right">Add</button>
+</form>
+
+<!-- Project Card Displays -->
 <mat-card *ngFor="let project of projects">
     <mat-card-title>{{project.title}}</mat-card-title>
     <mat-card-content>{{project.description}}</mat-card-content>
     <!-- will redirect to the bugs page for that project-->
-    <button mat-raised-button color="primary">Bugs</button>
+    <button mat-raised-button color="accent">Bugs</button>
 
     <button mat-icon-button (click)="removeProject(project.id)" style="float: right;">
         <mat-icon (click)="removeProject(project.id)" color="warn">delete</mat-icon>
