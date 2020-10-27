@@ -1,36 +1,41 @@
 <!-- Add bug Form Field -->
 <div class="example-container">
+    <!-- TITLE -->
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
-      <input matInput>
+      <input matInput [(ngModel)]="title">
     </mat-form-field>
     <br>
+    <!-- DIFFICULTY -->
     <mat-form-field appearance="fill">
       <mat-label>Difficulty</mat-label>
-      <mat-select>
-        <mat-option value="Easy">Easy</mat-option>
-        <mat-option value="Medium">Medium</mat-option>
-        <mat-option value="Hard">Hard</mat-option>
+      <mat-select [(ngModel)]="difficulty">
+        <mat-option value="easy">Easy</mat-option>
+        <mat-option value="medium">Medium</mat-option>
+        <mat-option value="hard">Hard</mat-option>
       </mat-select>
     </mat-form-field>
     <br>
+    <!-- DESRIPTION -->
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
-      <textarea matInput></textarea>
+      <textarea matInput [(ngModel)]="description"></textarea>
     </mat-form-field>
     <br>
+    <!-- COMPLETION STATUS -->
     <mat-form-field appearance="fill">
       <mat-label>Status</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="status">
         <!-- White -->
         <mat-option value="back-log">Back Log</mat-option>
         <!-- Blue -->
-        <mat-option value="Medium">In Progress</mat-option>
+        <mat-option value="medium">In Progress</mat-option>
         <!-- Green -->
-        <mat-option value="Hard">Completed</mat-option>
+        <mat-option value="hard">Completed</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-fab color="accent" aria-label="add new bug">
+    <!-- ADD BUG BUTTON -->
+    <button mat-fab color="accent" aria-label="add new bug" (click)="addBug()">
         <mat-icon>add</mat-icon>
       </button>
 </div>
