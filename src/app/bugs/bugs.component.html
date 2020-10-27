@@ -1,1 +1,46 @@
-<p>bugs works!</p>
+<!-- Add bug Form Field -->
+<div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Difficulty</mat-label>
+      <mat-select>
+        <mat-option value="Easy">Easy</mat-option>
+        <mat-option value="Medium">Medium</mat-option>
+        <mat-option value="Hard">Hard</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select>
+        <!-- White -->
+        <mat-option value="back-log">Back Log</mat-option>
+        <!-- Blue -->
+        <mat-option value="Medium">In Progress</mat-option>
+        <!-- Green -->
+        <mat-option value="Hard">Completed</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-fab color="accent" aria-label="add new bug">
+        <mat-icon>add</mat-icon>
+      </button>
+</div>
+
+<!-- Bugs list body -->
+<mat-list>
+    <mat-list-item>Back Log</mat-list-item>
+    <!-- Add basic chips to show difficulty -->
+    <mat-divider></mat-divider>
+    <mat-list-item>In Progress</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Completed</mat-list-item>
+  </mat-list>
