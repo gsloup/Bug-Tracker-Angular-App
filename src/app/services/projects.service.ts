@@ -32,10 +32,10 @@ export class ProjectsService {
   }
   
   // BUGS FUNCTIONS
-  addBug(title: string, description: string, difficulty: string, status: string){
+  addBug(title: string, description: string, difficulty: string, status: string, projId: string){
     this.afs.collection('bugs').add({
-      userId: this.userId, // may not need, if linked via projId
-      // projId: this.projId
+      // userId: this.userId, // may not need, if linked via projId
+      projId: projId,
       title: title,
       description: description,
       difficulty: difficulty,
