@@ -33,9 +33,9 @@
         <!-- White -->
         <mat-option value="back-log">Back Log</mat-option>
         <!-- Blue -->
-        <mat-option value="medium">In Progress</mat-option>
+        <mat-option value="in-progress">In Progress</mat-option>
         <!-- Green -->
-        <mat-option value="hard">Completed</mat-option>
+        <mat-option value="completed">Completed</mat-option>
       </mat-select>
     </mat-form-field>
     <!-- ADD BUG BUTTON -->
@@ -47,13 +47,31 @@
 <!-- Bugs list body -->
 <mat-list>
     <mat-list-item>Back Log</mat-list-item>
+      <div *ngFor='let bug of bugsList'>
+        <ng-container *ngIf="bug.status === 'back-log'">
+          {{bug.title | uppercase}} - {{bug.status}}
+
+          <!-- STATUS -->
+          <button (click)="bug.status = 'in-progress'">Start Debugging</button>
+
+          <!-- DELETE -->
+          <button (click)="removeBug(bug.id)">Delete</button></ng-container>
+      </div>
+
     <!-- Add basic chips to show difficulty -->
     <mat-divider></mat-divider>
     <mat-list-item>In Progress</mat-list-item>
+      <div *ngFor='let bug of bugsList'>
+        <ng-container *ngIf="bug.status === 'in-progress'">{{bug.title}} - {{bug.status}}</ng-container>
+      </div>
     <mat-divider></mat-divider>
     <mat-list-item>Completed</mat-list-item>
+      <div *ngFor='let bug of bugsList'>
+        <ng-container *ngIf="bug.status === 'completed'">{{bug.title}} - {{bug.status}}</ng-container>
+      </div>
 </mat-list>
 
+<!-- TEST DISPLAY. DELETE LATER -->
 <div *ngFor='let bug of bugsList'>
   <p>{{bug.title}} - {{bug.description}}</p>
 </div>
