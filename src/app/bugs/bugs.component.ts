@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { Bug } from '../interfaces/bug.interface';
+import { Observable } from 'rxjs';
 import { ProjectsService } from '../services/projects.service';
 
 @Component({
@@ -18,19 +18,30 @@ export class BugsComponent implements OnInit {
   projId: string;
   
   projectName: string;
-  bugsList: Bug[] = []; // will fill with data retrieved from projectsService
+  bugsList: Array<Object> = []; // will fill with data retrieved from projectsService
+
+  bugs$: Observable<any>;
+  
+    
+
 
   constructor(private projectService: ProjectsService, private actr: ActivatedRoute, private afs: AngularFirestore) { 
     // Grab and attach projID from url endpoint to the local variable
     this.projId = this.actr.snapshot.params.projId;
+    
+    // Keeps bugsList updated with latest data from FireStore
+    this.afs.collection('bugs', ref => ref.where('projId', '==', this.projId)).valueChanges({idField: 'id'})
+      .subscribe(val => this.bugsList = val);
 
     // Grab and attach project title from DB to 'projectName'
     this.afs.collection('projects').doc(this.projId).valueChanges().subscribe((val: any)=> {
       this.projectName = val ? val.title : null
-    })    
+    });
+
   }
 
   ngOnInit(): void {
+    console.log(this.bugsList)
   }
 
   addBug() {
