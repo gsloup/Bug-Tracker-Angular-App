@@ -46,13 +46,15 @@
 
 <!-- BACK LOG -->
 <mat-list>
-  <mat-list-item>Back Log</mat-list-item>
+  <mat-list-item><span class="dot"></span> Back Log </mat-list-item>
   <!-- INDIVIDUAL BUG CARDS -->
   <mat-card *ngFor='let bug of bugsList'>
     <ng-container *ngIf="bug.status === 'back-log'">
       <mat-card-subtitle>{{bug.title | uppercase}}</mat-card-subtitle>
       <mat-card-content><p>{{bug.description}}</p></mat-card-content>
-      <mat-chip style="background-color: green" title="difficulty">{{bug.difficulty}}</mat-chip>
+      <mat-chip-list>
+        <mat-chip style="background-color: green" title="difficulty">{{bug.difficulty}}</mat-chip>
+      </mat-chip-list>
 
       <!-- STATUS -->
       <mat-card-actions>
@@ -70,12 +72,12 @@
 
   <!-- Add basic chips to show difficulty -->
   <mat-divider></mat-divider>
-  <mat-list-item>In Progress</mat-list-item>
+  <mat-list-item><span class="dot bg-blue"></span>In Progress</mat-list-item>
   <div *ngFor='let bug of bugsList'>
     <ng-container *ngIf="bug.status === 'in-progress'">{{bug.title}} - {{bug.status}}</ng-container>
   </div>
   <mat-divider></mat-divider>
-  <mat-list-item>Completed</mat-list-item>
+  <mat-list-item><span class="dot bg-green"></span>Completed</mat-list-item>
   <div *ngFor='let bug of bugsList'>
     <ng-container *ngIf="bug.status === 'completed'">{{bug.title}} - {{bug.status}}</ng-container>
   </div>
