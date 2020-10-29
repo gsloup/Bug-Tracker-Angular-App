@@ -4,74 +4,79 @@
 
 <!-- Add bug Form Field -->
 <div class="example-container">
-    <!-- TITLE -->
-    <mat-form-field appearance="fill">
-      <mat-label>Title</mat-label>
-      <input matInput [(ngModel)]="title">
-    </mat-form-field>
-    <br>
-    <!-- DIFFICULTY -->
-    <mat-form-field appearance="fill">
-      <mat-label>Difficulty</mat-label>
-      <mat-select [(ngModel)]="difficulty">
-        <mat-option value="easy">Easy</mat-option>
-        <mat-option value="medium">Medium</mat-option>
-        <mat-option value="hard">Hard</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-    <!-- DESRIPTION -->
-    <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
-      <textarea matInput [(ngModel)]="description"></textarea>
-    </mat-form-field>
-    <br>
-    <!-- COMPLETION STATUS -->
-    <mat-form-field appearance="fill">
-      <mat-label>Status</mat-label>
-      <mat-select [(ngModel)]="status">
-        <!-- White -->
-        <mat-option value="back-log">Back Log</mat-option>
-        <!-- Blue -->
-        <mat-option value="in-progress">In Progress</mat-option>
-        <!-- Green -->
-        <mat-option value="completed">Completed</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <!-- ADD BUG BUTTON -->
-    <button mat-fab color="accent" aria-label="add new bug" (click)="addBug()">
-        <mat-icon>add</mat-icon>
-      </button>
+  <!-- TITLE -->
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="title">
+  </mat-form-field>
+  <br>
+  <!-- DIFFICULTY -->
+  <mat-form-field appearance="fill">
+    <mat-label>Difficulty</mat-label>
+    <mat-select [(ngModel)]="difficulty">
+      <mat-option value="easy">Easy</mat-option>
+      <mat-option value="medium">Medium</mat-option>
+      <mat-option value="hard">Hard</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <!-- DESRIPTION -->
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="description"></textarea>
+  </mat-form-field>
+  <br>
+  <!-- COMPLETION STATUS -->
+  <mat-form-field appearance="fill">
+    <mat-label>Status</mat-label>
+    <mat-select [(ngModel)]="status">
+      <!-- White -->
+      <mat-option value="back-log">Back Log</mat-option>
+      <!-- Blue -->
+      <mat-option value="in-progress">In Progress</mat-option>
+      <!-- Green -->
+      <mat-option value="completed">Completed</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- ADD BUG BUTTON -->
+  <button mat-fab color="accent" aria-label="add new bug" (click)="addBug()">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
 
-<!-- Bugs list body -->
+<!-- BACK LOG -->
 <mat-list>
-    <mat-list-item>Back Log</mat-list-item>
-      <div *ngFor='let bug of bugsList'>
-        <ng-container *ngIf="bug.status === 'back-log'">
-          {{bug.title | uppercase}} - {{bug.status}}
+  <mat-list-item>Back Log</mat-list-item>
+  <!-- INDIVIDUAL BUG CARDS -->
+  <mat-card *ngFor='let bug of bugsList'>
+    <ng-container *ngIf="bug.status === 'back-log'">
+      <mat-card-subtitle>{{bug.title | uppercase}}</mat-card-subtitle>
+      <mat-card-content><p>{{bug.description}}</p></mat-card-content>
+      <mat-chip style="background-color: green" title="difficulty">{{bug.difficulty}}</mat-chip>
 
-          <!-- STATUS -->
-          <button (click)="bug.status = 'in-progress'">Start Debugging</button>
+      <!-- STATUS -->
+      <mat-card-actions>
+        <select #status (input)="updateStatus(bug.id, status.value)">
+          <option value="" selected>Status</option>
+          <option value="back-log" disabled>Back Log</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      <!-- DELETE -->
+        <button (click)="removeBug(bug.id)">Delete</button>
+      </mat-card-actions>
+    </ng-container>
+  </mat-card>
 
-          <!-- DELETE -->
-          <button (click)="removeBug(bug.id)">Delete</button></ng-container>
-      </div>
-
-    <!-- Add basic chips to show difficulty -->
-    <mat-divider></mat-divider>
-    <mat-list-item>In Progress</mat-list-item>
-      <div *ngFor='let bug of bugsList'>
-        <ng-container *ngIf="bug.status === 'in-progress'">{{bug.title}} - {{bug.status}}</ng-container>
-      </div>
-    <mat-divider></mat-divider>
-    <mat-list-item>Completed</mat-list-item>
-      <div *ngFor='let bug of bugsList'>
-        <ng-container *ngIf="bug.status === 'completed'">{{bug.title}} - {{bug.status}}</ng-container>
-      </div>
+  <!-- Add basic chips to show difficulty -->
+  <mat-divider></mat-divider>
+  <mat-list-item>In Progress</mat-list-item>
+  <div *ngFor='let bug of bugsList'>
+    <ng-container *ngIf="bug.status === 'in-progress'">{{bug.title}} - {{bug.status}}</ng-container>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-list-item>Completed</mat-list-item>
+  <div *ngFor='let bug of bugsList'>
+    <ng-container *ngIf="bug.status === 'completed'">{{bug.title}} - {{bug.status}}</ng-container>
+  </div>
 </mat-list>
-
-<!-- TEST DISPLAY. DELETE LATER -->
-<div *ngFor='let bug of bugsList'>
-  <p>{{bug.title}} - {{bug.description}}</p>
-</div>

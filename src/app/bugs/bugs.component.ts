@@ -55,15 +55,7 @@ export class BugsComponent implements OnInit {
     this.projectService.removeBug(bugId)
   }
 
-  /**
-   * Updates the status of an item to the status given in the argument
-   * 
-   * @param bugId Id associated with the bug that needs a status change
-   * @param nextStatus The next status to progress to according to current status
-   * 
-   * @returns string value of the "next" status
-   */
-  updateStatus(bugId: string, nextStatus: string) {
-    // BUILD OUT FUNCTIONALITY ON SERVICE SIDE
+  updateStatus(bugId: string, newStatus: string) {
+    this.projectService.updateStatus(bugId, newStatus);
   }
 }

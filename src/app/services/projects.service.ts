@@ -41,7 +41,20 @@ export class ProjectsService {
       status: status
     })
   }
+  
   removeBug(bugId: string){
     this.afs.collection('bugs').doc(bugId).delete(); // UNSURE OF WHETHER THIS FUNCTION WILL WORK
+  }
+
+  /**
+   * Updates the status of an item to the status given in the argument in Google Firestore
+   * 
+   * @param bugId Id associated with the bug that needs a status change
+   * @param newStatus The next status to progress to according to current status
+   * 
+   * @returns string value of the "next" status
+   */
+  updateStatus(bugId: string, newStatus: string) {
+    this.afs.collection('bugs').doc(bugId).update({status: newStatus});
   }
 }
