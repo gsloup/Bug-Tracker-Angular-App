@@ -11,6 +11,10 @@ body {
     background-color: #303030;
 }
 
+.spacer {
+    flex: 1 1 auto;
+}
+
 .margin-auto {
     margin: auto;
 }
@@ -29,4 +33,12 @@ body {
 
 .mb-25 {
     margin-bottom: 25px;
+}
+
+.flex {
+    display: flex;
+}
+
+.row {
+    flex-direction: row;
 }

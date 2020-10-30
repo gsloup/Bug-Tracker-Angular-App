@@ -27,7 +27,12 @@ export class ProjectsService {
     console.log("addProject() runs in service")
   }
   removeProject(projId: string){
+    // Delete the specific project
     this.afs.collection('projects').doc(projId).delete();
+
+    // Delete the project's children data (bugs)
+    this.afs.collection('bugs', ref => ref.where('projId', '==', projId)).valueChanges({idField: 'id'})
+      .subscribe(bugs => bugs.forEach(b=> this.afs.collection('bugs').doc(b.id).delete()));
   }
   
   // Bugs' Functions
@@ -43,7 +48,7 @@ export class ProjectsService {
   }
   
   removeBug(bugId: string){
-    this.afs.collection('bugs').doc(bugId).delete(); // UNSURE OF WHETHER THIS FUNCTION WILL WORK
+    this.afs.collection('bugs').doc(bugId).delete(); 
   }
 
   /**

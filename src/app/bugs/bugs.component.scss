@@ -9,11 +9,18 @@ mat-card {
     border-radius: 50%;
     display: inline-block;
     margin-right: 5px;
-  }
+}
 
 .bg-blue {
     background-color:lightblue;
 }
+
 .bg-green {
     background-color: springgreen;
+}
+
+.action-container {
+    width: 175px;
+    min-width: 170px;
+    text-align: right;
 }

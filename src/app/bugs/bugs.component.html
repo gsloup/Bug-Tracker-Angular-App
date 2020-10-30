@@ -47,23 +47,31 @@
   <!-- INDIVIDUAL BUG CARDS -->
   <mat-card *ngFor='let bug of bugsList'>
     <ng-container *ngIf="bug.status === 'back-log'">
-      <mat-card-subtitle>{{bug.title | uppercase}}</mat-card-subtitle>
-      <mat-card-content><p>{{bug.description}}</p></mat-card-content>
-      <!-- DIFFICULTY -->
-      <mat-chip-list>
-        <mat-chip [style.backgroundColor]="getDifficultyColor(bug.difficulty)">{{ bug.difficulty }}</mat-chip>
-      </mat-chip-list>
-      <!-- STATUS -->
-      <mat-card-actions>
-        <select #status (input)="updateStatus(bug.id, status.value)">
-          <option value="" selected>Status</option>
-          <option value="back-log" disabled>Back Log</option>
-          <option value="in-progress">In Progress</option>
-          <option value="completed">Completed</option>
-        </select>
-      <!-- DELETE -->
-        <button (click)="removeBug(bug.id)">Delete</button>
-      </mat-card-actions>
+      <!-- TITLE -->
+      <div class="flex row">
+        <mat-card-subtitle class="spacer">{{bug.title | uppercase}}</mat-card-subtitle>
+        <!-- DIFFICULTY -->
+        <mat-chip-list>
+          <mat-chip [style.backgroundColor]="getDifficultyColor(bug.difficulty)">{{ bug.difficulty }}</mat-chip>
+        </mat-chip-list>
+      </div>
+      <!-- DESCRIPTION -->
+      <div class="flex row">
+        <mat-card-content class="spacer">
+          <p>{{bug.description}}</p>
+        </mat-card-content>
+        <!-- STATUS -->
+        <mat-card-actions class="action-container">
+          <select #status (input)="updateStatus(bug.id, status.value)">
+            <option value="" selected>Status</option>
+            <option value="back-log" disabled>Back Log</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+          <!-- DELETE -->
+          <button (click)="removeBug(bug.id)">Delete</button>
+        </mat-card-actions>
+      </div>
     </ng-container>
   </mat-card>
 
