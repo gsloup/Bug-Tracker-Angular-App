@@ -22,7 +22,6 @@ export class BugsComponent implements OnInit {
   bugsList: Array<Object> = []; // filled with data retrieved from projectsService
   bugs$: Observable<any>;
   
-
   constructor(private projectService: ProjectsService, private actr: ActivatedRoute, private afs: AngularFirestore) { 
     // Grab and attach projID from url endpoint to the local variable
     this.projId = this.actr.snapshot.params.projId;
@@ -57,5 +56,17 @@ export class BugsComponent implements OnInit {
 
   updateStatus(bugId: string, newStatus: string) {
     this.projectService.updateStatus(bugId, newStatus);
+  }
+
+  getDifficultyColor(difficulty: string){
+    if (difficulty === 'hard') {
+      return "red";
+    } 
+    else if (difficulty === 'medium'){
+      return "orange";
+    }
+    else {
+      return "green";
+    }
   }
 }

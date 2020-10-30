@@ -30,11 +30,8 @@
   <mat-form-field appearance="fill">
     <mat-label>Status</mat-label>
     <mat-select [(ngModel)]="status">
-      <!-- White -->
       <mat-option value="back-log">Back Log</mat-option>
-      <!-- Blue -->
       <mat-option value="in-progress">In Progress</mat-option>
-      <!-- Green -->
       <mat-option value="completed">Completed</mat-option>
     </mat-select>
   </mat-form-field>
@@ -52,10 +49,10 @@
     <ng-container *ngIf="bug.status === 'back-log'">
       <mat-card-subtitle>{{bug.title | uppercase}}</mat-card-subtitle>
       <mat-card-content><p>{{bug.description}}</p></mat-card-content>
+      <!-- DIFFICULTY -->
       <mat-chip-list>
-        <mat-chip style="background-color: green" title="difficulty">{{bug.difficulty}}</mat-chip>
+        <mat-chip [style.backgroundColor]="getDifficultyColor(bug.difficulty)">{{ bug.difficulty }}</mat-chip>
       </mat-chip-list>
-
       <!-- STATUS -->
       <mat-card-actions>
         <select #status (input)="updateStatus(bug.id, status.value)">
@@ -70,7 +67,7 @@
     </ng-container>
   </mat-card>
 
-  <!-- Add basic chips to show difficulty -->
+  <!-- IN PROGRESS -->
   <mat-divider></mat-divider>
   <mat-list-item><span class="dot bg-blue"></span>In Progress</mat-list-item>
   <div *ngFor='let bug of bugsList'>
