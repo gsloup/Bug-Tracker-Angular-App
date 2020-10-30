@@ -58,6 +58,12 @@ export class BugsComponent implements OnInit {
     this.projectService.updateStatus(bugId, newStatus);
   }
 
+  /**
+   * Assigns a color based off of the level of difficulty provided
+   * @param difficulty "easy", "medium", or "hard" based off specific bug data
+   * 
+   * @returns string color name that will change the background color 
+   */
   getDifficultyColor(difficulty: string){
     if (difficulty === 'hard') {
       return "red";
