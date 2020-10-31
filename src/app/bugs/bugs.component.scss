@@ -2,6 +2,13 @@ mat-card {
     margin: 7px;
 }
 
+mat-expansion-panel {
+    position: relative;
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+}
+
 .dot {
     height: 16px;
     width: 16px;
@@ -29,6 +36,9 @@ mat-card {
     .action-container{
         min-width: 100px;
         max-width: 115px;
+        padding-left: 5px;
+    }
+    .pl-35 {
         padding-left: 5px;
     }
 }
