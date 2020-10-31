@@ -41,12 +41,13 @@
   </button>
 </div>
 
-<!-- BACK LOG -->
+
 <mat-list>
+  <!-- STATUS: BACK LOG -->
   <mat-list-item><span class="dot"></span> Back Log </mat-list-item>
   <!-- INDIVIDUAL BUG CARDS -->
-  <mat-card *ngFor='let bug of bugsList'>
-    <ng-container *ngIf="bug.status === 'back-log'">
+  <ng-container *ngFor='let bug of bugsList'>
+    <mat-card *ngIf="bug.status === 'back-log'">
       <!-- TITLE -->
       <div class="flex row">
         <mat-card-subtitle class="spacer">{{bug.title | uppercase}}</mat-card-subtitle>
@@ -72,18 +73,74 @@
           <button (click)="removeBug(bug.id)">Delete</button>
         </mat-card-actions>
       </div>
-    </ng-container>
-  </mat-card>
+    </mat-card>
+  </ng-container>
 
   <!-- IN PROGRESS -->
   <mat-divider></mat-divider>
+  <!-- STATUS: IN PROGRESS -->
   <mat-list-item><span class="dot bg-blue"></span>In Progress</mat-list-item>
-  <div *ngFor='let bug of bugsList'>
-    <ng-container *ngIf="bug.status === 'in-progress'">{{bug.title}} - {{bug.status}}</ng-container>
-  </div>
+    <!-- INDIVIDUAL BUG CARDS -->
+    <ng-container *ngFor='let bug of bugsList'>
+      <mat-card *ngIf="bug.status === 'in-progress'">
+        <!-- TITLE -->
+        <div class="flex row">
+          <mat-card-subtitle class="spacer">{{bug.title | uppercase}}</mat-card-subtitle>
+          <!-- DIFFICULTY -->
+          <mat-chip-list>
+            <mat-chip [style.backgroundColor]="getDifficultyColor(bug.difficulty)">{{ bug.difficulty }}</mat-chip>
+          </mat-chip-list>
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="flex row">
+          <mat-card-content class="spacer">
+            <p>{{bug.description}}</p>
+          </mat-card-content>
+          <!-- STATUS -->
+          <mat-card-actions class="action-container">
+            <select #status (input)="updateStatus(bug.id, status.value)">
+              <option value="" selected>Status</option>
+              <option value="back-log" disabled>Back Log</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+            <!-- DELETE -->
+            <button (click)="removeBug(bug.id)">Delete</button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </ng-container>
   <mat-divider></mat-divider>
+  <!-- STATUS: COMPLETED -->
   <mat-list-item><span class="dot bg-green"></span>Completed</mat-list-item>
-  <div *ngFor='let bug of bugsList'>
-    <ng-container *ngIf="bug.status === 'completed'">{{bug.title}} - {{bug.status}}</ng-container>
-  </div>
+    <!-- INDIVIDUAL BUG CARDS -->
+    <ng-container *ngFor='let bug of bugsList'>
+      <mat-card *ngIf="bug.status === 'completed'">
+        <!-- TITLE -->
+        <div class="flex row">
+          <mat-card-subtitle class="spacer">{{bug.title | uppercase}}</mat-card-subtitle>
+          <!-- DIFFICULTY -->
+          <mat-chip-list>
+            <mat-chip [style.backgroundColor]="getDifficultyColor(bug.difficulty)">{{ bug.difficulty }}</mat-chip>
+          </mat-chip-list>
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="flex row">
+          <mat-card-content class="spacer">
+            <p>{{bug.description}}</p>
+          </mat-card-content>
+          <!-- STATUS -->
+          <mat-card-actions class="action-container">
+            <select #status (input)="updateStatus(bug.id, status.value)">
+              <option value="" selected>Status</option>
+              <option value="back-log" disabled>Back Log</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+            <!-- DELETE -->
+            <button (click)="removeBug(bug.id)">Delete</button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </ng-container>
 </mat-list>
