@@ -113,8 +113,8 @@
         <mat-card-actions class="action-container">
           <select #status (input)="updateStatus(bug.id, status.value)">
             <option value="" selected>Status</option>
-            <option value="back-log" disabled>Back Log</option>
-            <option value="in-progress">In Progress</option>
+            <option value="back-log">Back Log</option>
+            <option value="in-progress" disabled>In Progress</option>
             <option value="completed">Completed</option>
           </select>
           <!-- DELETE -->
@@ -146,9 +146,9 @@
         <mat-card-actions class="action-container">
           <select #status (input)="updateStatus(bug.id, status.value)">
             <option value="" selected>Status</option>
-            <option value="back-log" disabled>Back Log</option>
+            <option value="back-log">Back Log</option>
             <option value="in-progress">In Progress</option>
-            <option value="completed">Completed</option>
+            <option value="completed" disabled>Completed</option>
           </select>
           <!-- DELETE -->
           <button (click)="removeBug(bug.id)">Delete</button>

@@ -9,6 +9,12 @@ mat-expansion-panel {
     margin: auto;
 }
 
+mat-list {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
 .dot {
     height: 16px;
     width: 16px;
@@ -19,7 +25,7 @@ mat-expansion-panel {
 }
 
 .bg-blue {
-    background-color:lightblue;
+    background-color:#03b6fc;
 }
 
 .bg-green {
