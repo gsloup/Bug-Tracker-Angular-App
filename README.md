@@ -1,5 +1,7 @@
 # Bug Tracker App
 
+See the deployed project here: https://bug-tracker-angular.firebaseapp.com/login
+
 This project was built in Angular 10.
 
 It has a NoSQL database that is stored, hosted, and served through Google Firebase.
