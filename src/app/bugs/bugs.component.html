@@ -11,7 +11,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <!-- Add bug Form Field -->
-    <form class="add-bug-form" role="form" name="form" (ngSubmit)="bugForm.form.valid && addBug()" #bugForm="ngForm">
+    <form class="add-bug-form" role="form" name="form" (ngSubmit)="bugForm.form.valid && addBug(bugForm)" #bugForm="ngForm">
       <!-- TITLE -->
       <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
@@ -37,7 +37,8 @@
       <!-- DESRIPTION -->
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
-        <textarea name="description"  [(ngModel)]="description" matInput required minlength="3" maxlength="300" #descriptionField="ngModel"></textarea>
+        <textarea name="description"  [(ngModel)]="description" matInput required minlength="3" maxlength="300" 
+          #descriptionField="ngModel"></textarea>
         <mat-error *ngIf="descriptionField.errors && (descriptionField.dirty || descriptionField.touched)">
           * Description must be between 3 and 300 characters
         </mat-error>

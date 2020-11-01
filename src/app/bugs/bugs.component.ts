@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjectsService } from '../services/projects.service';
@@ -40,7 +41,7 @@ export class BugsComponent implements OnInit {
 
   }
 
-  addBug() {
+  addBug(bugForm: NgForm) {
     this.projectService.addBug(this.title, this.description, this.difficulty, this.status, this.projId);
     
     // Clear input data after new bug is added
@@ -48,6 +49,9 @@ export class BugsComponent implements OnInit {
     this.difficulty = ''; 
     this.description = '';
     this.status = '';
+
+    // reset bug input form to make it 'pristine' and 'untouched' to keep errors from showing on a blank input form
+    bugForm.resetForm(); 
   }
 
   removeBug(bugId: string){ 
