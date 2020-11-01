@@ -16,10 +16,10 @@
       <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
         <input matInput [(ngModel)]="title" required minlength="3" maxlength="128" name="title" #titleField='ngModel'>
+        <mat-error *ngIf="titleField.errors && (titleField.dirty || titleField.touched)">
+          * Title must be between 3 and 128 characters
+        </mat-error>
       </mat-form-field>
-      <div *ngIf="titleField.errors && (titleField.dirty || titleField.touched)">
-        Title must be between 3 and 128 characters
-    </div>
       <br>
       <!-- DIFFICULTY -->
       <mat-form-field appearance="fill">
@@ -29,28 +29,31 @@
           <mat-option value="medium">Medium</mat-option>
           <mat-option value="hard">Hard</mat-option>
         </mat-select>
+        <mat-error *ngIf="difficultyField.errors && (difficultyField.dirty || difficultyField.touched)">
+          * Difficulty is required
+        </mat-error>
       </mat-form-field>
-      <div *ngIf="difficultyField.errors && (difficultyField.dirty || difficultyField.touched)">
-        Valid difficulty is required
-      </div>
       <br>
       <!-- DESRIPTION -->
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
         <textarea name="description"  [(ngModel)]="description" matInput required minlength="3" maxlength="300" #descriptionField="ngModel"></textarea>
+        <mat-error *ngIf="descriptionField.errors && (descriptionField.dirty || descriptionField.touched)">
+          * Description must be between 3 and 300 characters
+        </mat-error>
       </mat-form-field>
-      <div *ngIf="descriptionField.errors && (descriptionField.dirty || descriptionField.touched)">
-        Description must be between 3 and 300 characters
-      </div>
       <br>
       <!-- COMPLETION STATUS -->
       <mat-form-field appearance="fill">
         <mat-label>Status</mat-label>
-        <mat-select [(ngModel)]="status" name="status">
+        <mat-select [(ngModel)]="status" name="status" required #statusField='ngModel'>
           <mat-option value="back-log">Back Log</mat-option>
           <mat-option value="in-progress">In Progress</mat-option>
           <mat-option value="completed">Completed</mat-option>
         </mat-select>
+        <mat-error *ngIf="statusField.errors && (statusField.dirty || statusField.touched)">
+          * Status is required
+        </mat-error>
       </mat-form-field>
       <br>
       <!-- ADD BUG BUTTON -->
