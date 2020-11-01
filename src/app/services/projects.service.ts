@@ -17,7 +17,7 @@ export class ProjectsService {
       this.userId = v ? v.uid : null;
     });
   }
-  // Projects' Functions
+  // Projects Functions
   addProject(title: string, description: string){
     this.afs.collection('projects').add({
       userId: this.userId,
@@ -30,15 +30,14 @@ export class ProjectsService {
     // Delete the specific project
     this.afs.collection('projects').doc(projId).delete();
 
-    // Delete the project's children data (bugs)
+    // Delete the project's children data (all of the project's bugs items)
     this.afs.collection('bugs', ref => ref.where('projId', '==', projId)).valueChanges({idField: 'id'})
       .subscribe(bugs => bugs.forEach(b=> this.afs.collection('bugs').doc(b.id).delete()));
   }
   
-  // Bugs' Functions
+  // Bugs Functions
   addBug(title: string, description: string, difficulty: string, status: string, projId: string){
     this.afs.collection('bugs').add({
-      // userId: this.userId, // may not need since it is linked to projId
       projId: projId,
       title: title,
       description: description,
