@@ -1,6 +1,6 @@
 # Bug Tracker App
 
-See the deployed project here: https://bug-tracker-angular.firebaseapp.com/login
+Interact with the hosted project here: https://bug-tracker-angular.firebaseapp.com/login
 
 This project was built in Angular 10.
 
