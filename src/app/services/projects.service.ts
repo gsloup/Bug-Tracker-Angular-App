@@ -22,7 +22,7 @@ export class ProjectsService {
   addProject(title: string, description: string){
     // If both title and description are not properly provided, send error message 
     if(!title || title.length < 3 || title.length > 128 || !description || description.length < 3 || description.length > 300) {
-      // Since there is template driven form validation, this message should only show if someone did an api call directly
+      // Since there is template driven form validation, this message should only show if someone did an incorrect api call directly
       console.log("Invalid data provided")
     }
     // If all is data is properly provided, add it to the Firestore DB and give them success message
@@ -51,16 +51,28 @@ export class ProjectsService {
   
   // Bugs Functions
   addBug(title: string, description: string, difficulty: string, status: string, projId: string){
-    this.afs.collection('bugs').add({
-      projId: projId,
-      title: title,
-      description: description,
-      difficulty: difficulty,
-      status: status
-    });
-    this._snackBar.open("Bug Added", null, {
-      duration: 2000,
-    });   
+    // If there was missing/incorrect information, send an error message
+    if(!title || title.length < 3 || title.length > 128 || 
+      !description || description.length < 3 || description.length > 300 ||
+      (difficulty !== "easy" && difficulty !=="medium" && difficulty !== "hard") ||
+      (status !== "back-log" && status !== "in-progress" && status !== "completed") ||
+      !status || !projId) {
+      // Message should only show if someone did an incorrect api call directly
+      console.log("Invalid data provided")
+    }
+    // If all is data is properly provided, add it to the Firestore DB and give them success message
+    else {
+      this.afs.collection('bugs').add({
+        projId: projId,
+        title: title,
+        description: description,
+        difficulty: difficulty,
+        status: status
+      });
+      this._snackBar.open("Bug Added", null, {
+        duration: 2000,
+      });  
+    } 
   }
   
   removeBug(bugId: string){
