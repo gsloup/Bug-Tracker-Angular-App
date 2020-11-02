@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ProjectsService {
   projId: string = ''; 
   bugId: string = ''; 
 
-  constructor(private auth: AngularFireAuth, private afs: AngularFirestore) { 
+  constructor(private auth: AngularFireAuth, private afs: AngularFirestore, private _snackBar: MatSnackBar) { 
     // Attaches Google User to userId var
     this.auth.user.subscribe(v=> {
       this.userId = v ? v.uid : null;
@@ -24,7 +25,9 @@ export class ProjectsService {
       title: title,
       description: description
     })
-    console.log("addProject() runs in service")
+    this._snackBar.open("Project Added", null, {
+      duration: 2000,
+    });   
   }
   removeProject(projId: string){
     // Delete the specific project
@@ -33,6 +36,9 @@ export class ProjectsService {
     // Delete the project's children data (all of the project's bugs items)
     this.afs.collection('bugs', ref => ref.where('projId', '==', projId)).valueChanges({idField: 'id'})
       .subscribe(bugs => bugs.forEach(b=> this.afs.collection('bugs').doc(b.id).delete()));
+    this._snackBar.open("Project Removed", null, {
+      duration: 2000,
+    });   
   }
   
   // Bugs Functions
@@ -43,11 +49,17 @@ export class ProjectsService {
       description: description,
       difficulty: difficulty,
       status: status
-    })
+    });
+    this._snackBar.open("Bug Added", null, {
+      duration: 2000,
+    });   
   }
   
   removeBug(bugId: string){
     this.afs.collection('bugs').doc(bugId).delete(); 
+    this._snackBar.open("Bug Removed", null, {
+      duration: 2000,
+    });   
   }
 
   /**
