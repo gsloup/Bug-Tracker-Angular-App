@@ -69,14 +69,16 @@ export class BugsComponent implements OnInit {
    * @returns string color name that will change the background color 
    */
   getDifficultyColor(difficulty: string){
-    if (difficulty === 'hard') {
-      return "red";
-    } 
-    else if (difficulty === 'medium'){
-      return "orange";
-    }
-    else {
-      return "green";
+    switch(difficulty) {
+      // Red is hard
+      case "hard":
+        return "red";
+      // Orange is medium
+      case "medium":
+        return "orange"
+      // Green is easy/default
+      default:
+        return "green"
     }
   }
 }
