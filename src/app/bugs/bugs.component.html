@@ -96,7 +96,9 @@
             <option value="completed">Completed</option>
           </select>
           <!-- DELETE -->
-          <button (click)="removeBug(bug.id)">Delete</button>
+          <button mat-icon-button color="warn" (click)="removeBug(bug.id)" title="Delete Bug">
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-card-actions>
       </div>
     </mat-card>
@@ -131,7 +133,9 @@
             <option value="completed">Completed</option>
           </select>
           <!-- DELETE -->
-          <button (click)="removeBug(bug.id)">Delete</button>
+          <button mat-icon-button color="warn" (click)="removeBug(bug.id)" title="Delete Bug">
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-card-actions>
       </div>
     </mat-card>
@@ -164,7 +168,9 @@
             <option value="completed" disabled>Completed</option>
           </select>
           <!-- DELETE -->
-          <button (click)="removeBug(bug.id)">Delete</button>
+          <button mat-icon-button color="warn" (click)="removeBug(bug.id)" title="Delete Bug">
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-card-actions>
       </div>
     </mat-card>
