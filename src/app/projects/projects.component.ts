@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
 import { ProjectsService } from '../services/projects.service';
 import { switchMap } from 'rxjs/operators';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-projects',
@@ -33,11 +34,14 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addProject(){
+  addProject(projectForm: NgForm){
     this.projectService.addProject(this.title, this.description);
     console.log('addProject() runs in component');
     this.title = '';
     this.description = '';
+
+    // Reset project input form to stop errors from showing after submitting form
+    projectForm.resetForm();
   }
   removeProject(id){
     this.projectService.removeProject(id);
