@@ -20,14 +20,22 @@ export class ProjectsService {
   }
   // Projects Functions
   addProject(title: string, description: string){
-    this.afs.collection('projects').add({
-      userId: this.userId,
-      title: title,
-      description: description
-    })
-    this._snackBar.open("Project Added", null, {
-      duration: 2000,
-    });   
+    // If both title and description are not properly provided, send error message 
+    if(!title || title.length < 3 || title.length > 128 || !description || description.length < 3 || description.length > 300) {
+      // Since there is template driven form validation, this message should only show if someone did an api call directly
+      console.log("Invalid data provided")
+    }
+    // If all is data is properly provided, add it to the Firestore DB and give them success message
+    else {
+      this.afs.collection('projects').add({
+        userId: this.userId,
+        title: title,
+        description: description
+      })
+      this._snackBar.open("Project Added", null, {
+        duration: 2000,
+      });         
+    }
   }
   removeProject(projId: string){
     // Delete the specific project

@@ -36,7 +36,7 @@ export class ProjectsComponent implements OnInit {
 
   addProject(projectForm: NgForm){
     this.projectService.addProject(this.title, this.description);
-    console.log('addProject() runs in component');
+    
     this.title = '';
     this.description = '';
 
