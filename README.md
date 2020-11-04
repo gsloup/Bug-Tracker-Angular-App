@@ -19,3 +19,5 @@ It has a NoSQL database that is stored, hosted, and served through Google Fireba
 - Google Auth login for easy and secure authentication.
 - Responsive and clean UI/UX for both desktop and mobile viewing.
 - Front end form validation and back end API validation to prevent incorrect CRUD operations.
+- Protected routing for redirecting user to appropriate url endpoint if not authorized.
+
